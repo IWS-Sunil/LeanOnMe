@@ -1,0 +1,135 @@
+﻿@model DataAccess.Models.Registration
+@using System.Data;
+@{
+    ViewBag.Title = "Profiles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<table class="responsive-table" style="overflow:hidden">
+    <tbody style="overflow:hidden">
+        <tr>
+            <td>
+                <div id="login-page" class="row">
+                    <div class="col s12 m12 l6 card-panel">
+                        @using (Html.BeginForm("Profiles", "RegisterUser", FormMethod.Post,
+new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.ValidationSummary(true)
+                            <div class="row">
+                                <div class="input-field col s12 center">
+                                    <h4>
+                                        User Profile
+                                        @Html.HiddenFor(m => m.UserID)
+                                        @Html.HiddenFor(m => m.Image)
+                                    </h4>
+                                </div>
+                            </div>
+                                <div class="row margin">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-social-person-outline prefix"></i>
+                                        @Html.TextBoxFor(m => m.UserName, new { @readonly = true })
+                                        <label for="UserName" class="center-align">Username</label>
+                                        <b style="color:red"> @Html.ValidationMessageFor(model => model.UserName)</b>
+                                    </div>
+                                </div>
+
+                                <div class="row margin" style="margin-left: 45px;">
+                                    @{
+                                        DataTable dt = new DataTable();
+                                        dt = (DataTable)Session["User"];
+                                        if (dt != null)
+                                        {
+                                            if (dt.Rows.Count > 0)
+                                            {
+                                                string role = Convert.ToString(dt.Rows[0]["Role"]);
+                                                if (role == "Admin")
+                                                {
+                                                    <div class="input-field col s12">
+                                                        <i class="mdi-communication-vpn-key prefix active" style="margin-left:-45px;margin-top:5px;"></i>
+                                                        @Html.DropDownList("Role")
+                                                        <b style="color:red"> @Html.ValidationMessageFor(model => model.Role)</b>
+                                                    </div>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </div>
+
+                                <div class="row margin">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-communication-email prefix"></i>
+                                        @Html.TextBoxFor(m => m.EmailID, new { @readonly = true })
+                                        <label for="EmailID" class="center-align">Email</label>
+                                        <b style="color:red">  @Html.ValidationMessageFor(model => model.EmailID)</b>
+                                    </div>
+                                </div>
+                                <div class="row margin">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-action-lock-outline prefix"></i>
+                                        @Html.TextBoxFor(m => m.Password)
+                                        <label for="Password">Password</label>
+                                        <b style="color:red"> @Html.ValidationMessageFor(model => model.Password)</b>
+                                    </div>
+                                </div>
+
+                                <div class="row margin">
+                                    <div class="input-field col s12">
+                                        <i class="mdi-action-settings-cell prefix"></i>
+                                        @Html.TextBoxFor(m => m.ContactNo)
+                                        <label for="ContactNo">Contact Number</label>
+                                    </div>
+                                </div>
+                                    <div class="row margin">
+                                        <div class="input-field col s12">
+                                            <i class="mdi-communication-location-on prefix"></i>
+                                            @Html.TextBoxFor(m => m.Address)
+                                            <label for="Address">Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="row margin">
+                                        <div class="input-field col s12">
+                                            <i class="mdi-action-face-unlock prefix"></i>
+                                            <input type="file" name="file" id="ProfilePic">
+                                        </div>
+                                    </div>
+                                    <div class="row margin">
+                                        <div class="input-field col s12">
+                                            <img src="~/Uploads/Profiles/@Model.Image" alt="" height="120px" width="120px" />
+                                        </div>
+                                    </div>
+                                    <div class="row margin">
+                                        <div class="input-field col s12">
+                                            <b style="color:red">@ViewBag.Error</b>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="input-field col s12">
+                                            <div class="input-field col s6">
+                                                <button name="Login" type="submit" class="btn waves-effect waves-light col s6">Submit <i class="mdi-content-send right"></i></button>
+                                            </div>
+                                            @{
+                                                string roles = Convert.ToString(Session["RoleName"]);
+                                                if (roles.Length > 0 || roles != null)
+                                                {
+                                                    if (roles == "Admin")
+                                                    {
+                                                        <div class="input-field col s6">
+                                                            <a href="@Url.Action("Index")" class="btn waves-effect waves-light left">
+                                                                Back<i class="mdi-content-send right"></i>
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+
+                                                }
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>

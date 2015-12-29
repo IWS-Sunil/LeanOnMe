@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LeanOnMeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AdminQuestions">
+    <Key>
+      <PropertyRef Name="QuestionID" />
+    </Key>
+    <Property Name="QuestionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionText" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="Location" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="DoctorList">
+    <Key>
+      <PropertyRef Name="DoctorID" />
+    </Key>
+    <Property Name="DoctorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelperID" Type="bigint" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="DoctorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Speciality" Type="nvarchar" MaxLength="200" />
+    <Property Name="Organisation" Type="nvarchar" MaxLength="200" />
+    <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="State" Type="nvarchar" MaxLength="100" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+    <Property Name="BusinessPhoneNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="FaxNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MedicalConditions">
+    <Key>
+      <PropertyRef Name="MedicalID" />
+    </Key>
+    <Property Name="MedicalID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CommonName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="MedicalName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="YearDiagnosed" Type="nvarchar" MaxLength="50" />
+    <Property Name="DoctorDiagnosed" Type="nvarchar" MaxLength="200" />
+    <Property Name="Restrictions" Type="nvarchar" MaxLength="200" />
+    <Property Name="HelperID" Type="bigint" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="MenuItemID" />
+    </Key>
+    <Property Name="MenuItemID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageID" Type="bigint" Nullable="false" />
+    <Property Name="MenuItemIcon" Type="nvarchar" MaxLength="200" />
+    <Property Name="MenuItemText" Type="nvarchar" MaxLength="200" />
+    <Property Name="MenuItemLink" Type="nvarchar" MaxLength="200" />
+    <Property Name="MenuItemPosition" Type="bigint" />
+  </EntityType>
+  <EntityType Name="MenuPage">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="PageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PageName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="PageLevel" Type="nvarchar" MaxLength="200" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MyCallTree">
+    <Key>
+      <PropertyRef Name="CallTreeID" />
+    </Key>
+    <Property Name="CallTreeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="100" />
+    <Property Name="Organistaion" Type="nvarchar" MaxLength="200" />
+    <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+    <Property Name="City" Type="nvarchar" MaxLength="200" />
+    <Property Name="State" Type="nvarchar" MaxLength="200" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+    <Property Name="HomeNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="BusinessNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+    <Property Name="HelperID" Type="bigint" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MyHelpers">
+    <Key>
+      <PropertyRef Name="MyHelperID" />
+    </Key>
+    <Property Name="MyHelperID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="100" />
+    <Property Name="Organistaion" Type="nvarchar" MaxLength="200" />
+    <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+    <Property Name="City" Type="nvarchar" MaxLength="200" />
+    <Property Name="State" Type="nvarchar" MaxLength="200" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+    <Property Name="HomeNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="BusinessNumber" Type="nvarchar" MaxLength="100" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+    <Property Name="HelperID" Type="bigint" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MyMedicines">
+    <Key>
+      <PropertyRef Name="MedicineID" />
+    </Key>
+    <Property Name="MedicineID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="HelperID" Type="bigint" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="MedicineName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DosagePerPill" Type="nvarchar" MaxLength="100" />
+    <Property Name="PillsPerDose" Type="nvarchar" MaxLength="200" />
+    <Property Name="Weekdays" Type="nvarchar" MaxLength="200" />
+    <Property Name="TimesTaken" Type="nvarchar" MaxLength="100" />
+    <Property Name="PrescribedDoctor" Type="nvarchar" MaxLength="200" />
+    <Property Name="DoctorContact" Type="nvarchar" MaxLength="100" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MyNeighbors">
+    <Key>
+      <PropertyRef Name="NeighborID" />
+    </Key>
+    <Property Name="NeighborID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+    <Property Name="City" Type="nvarchar" MaxLength="200" />
+    <Property Name="State" Type="nvarchar" MaxLength="200" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+    <Property Name="HomeNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="BusinessNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+    <Property Name="HelperID" Type="bigint" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MySafePlaces">
+    <Key>
+      <PropertyRef Name="PlaceID" />
+    </Key>
+    <Property Name="PlaceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PlaceName" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="StreetAddress" Type="nvarchar" MaxLength="200" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="100" />
+    <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+    <Property Name="HomeNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="BusinessNumber" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+    <Property Name="HelperID" Type="bigint" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="Images" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Registration">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmailID" Type="nvarchar" MaxLength="100" />
+    <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="300" />
+    <Property Name="Role" Type="nvarchar" MaxLength="50" />
+    <Property Name="Image" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="UserQuestions">
+    <Key>
+      <PropertyRef Name="AnswerID" />
+    </Key>
+    <Property Name="AnswerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionID" Type="bigint" Nullable="false" />
+    <Property Name="UserID" Type="bigint" />
+    <Property Name="QuestionText" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="Image" Type="nvarchar" MaxLength="200" />
+    <Property Name="Location" Type="nvarchar" MaxLength="100" />
+    <Property Name="LeanID" Type="bigint" />
+  </EntityType>
+  <EntityType Name="UserRegistration">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+    <Property Name="HelperID" Type="bigint" Nullable="false" />
+    <Property Name="ProfileImage" Type="nvarchar" MaxLength="100" />
+    <Property Name="OTP" Type="nvarchar" MaxLength="10" />
+    <Property Name="RegDate" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="UserRoles">
+    <Key>
+      <PropertyRef Name="Role" />
+    </Key>
+    <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_DoctorList_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="DoctorList" Type="Self.DoctorList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="DoctorList">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DoctorList_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="DoctorList" Type="Self.DoctorList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="DoctorList">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalConditions_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="MedicalConditions" Type="Self.MedicalConditions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MedicalConditions">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MedicalConditions_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="MedicalConditions" Type="Self.MedicalConditions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MedicalConditions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MenuItem_MenuPage">
+    <End Role="MenuPage" Type="Self.MenuPage" Multiplicity="1" />
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuPage">
+        <PropertyRef Name="PageID" />
+      </Principal>
+      <Dependent Role="MenuItem">
+        <PropertyRef Name="PageID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyCallTree_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="MyCallTree" Type="Self.MyCallTree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyCallTree">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyCallTree_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="MyCallTree" Type="Self.MyCallTree" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyCallTree">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyHelpers_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="MyHelpers" Type="Self.MyHelpers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyHelpers">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyHelpers_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="MyHelpers" Type="Self.MyHelpers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyHelpers">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyMedicines_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="MyMedicines" Type="Self.MyMedicines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyMedicines">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyMedicines_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="MyMedicines" Type="Self.MyMedicines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyMedicines">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyNeighbors_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="MyNeighbors" Type="Self.MyNeighbors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyNeighbors">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyNeighbors_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="MyNeighbors" Type="Self.MyNeighbors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MyNeighbors">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MySafePlaces_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="MySafePlaces" Type="Self.MySafePlaces" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MySafePlaces">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MySafePlaces_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="MySafePlaces" Type="Self.MySafePlaces" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="MySafePlaces">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Registration_UserRoles">
+    <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="0..1" />
+    <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRoles">
+        <PropertyRef Name="Role" />
+      </Principal>
+      <Dependent Role="Registration">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserQuestions_AdminQuestions">
+    <End Role="AdminQuestions" Type="Self.AdminQuestions" Multiplicity="1" />
+    <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AdminQuestions">
+        <PropertyRef Name="QuestionID" />
+      </Principal>
+      <Dependent Role="UserQuestions">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserQuestions_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+    <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserQuestions">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserQuestions_UserRegistration">
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+    <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRegistration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserQuestions">
+        <PropertyRef Name="LeanID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRegistration_Registration">
+    <End Role="Registration" Type="Self.Registration" Multiplicity="1" />
+    <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Registration">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserRegistration">
+        <PropertyRef Name="HelperID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="spLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="username" Type="nvarchar" Mode="In" />
+    <Parameter Name="password" Type="nvarchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="LeanOnMeModelStoreContainer">
+    <EntitySet Name="AdminQuestions" EntityType="Self.AdminQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DoctorList" EntityType="Self.DoctorList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MedicalConditions" EntityType="Self.MedicalConditions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuPage" EntityType="Self.MenuPage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyCallTree" EntityType="Self.MyCallTree" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyHelpers" EntityType="Self.MyHelpers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyMedicines" EntityType="Self.MyMedicines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MyNeighbors" EntityType="Self.MyNeighbors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MySafePlaces" EntityType="Self.MySafePlaces" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserQuestions" EntityType="Self.UserQuestions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRegistration" EntityType="Self.UserRegistration" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DoctorList_Registration" Association="Self.FK_DoctorList_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="DoctorList" EntitySet="DoctorList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DoctorList_UserRegistration" Association="Self.FK_DoctorList_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="DoctorList" EntitySet="DoctorList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalConditions_Registration" Association="Self.FK_MedicalConditions_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="MedicalConditions" EntitySet="MedicalConditions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MedicalConditions_UserRegistration" Association="Self.FK_MedicalConditions_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="MedicalConditions" EntitySet="MedicalConditions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MenuItem_MenuPage" Association="Self.FK_MenuItem_MenuPage">
+      <End Role="MenuPage" EntitySet="MenuPage" />
+      <End Role="MenuItem" EntitySet="MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyCallTree_Registration" Association="Self.FK_MyCallTree_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="MyCallTree" EntitySet="MyCallTree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyCallTree_UserRegistration" Association="Self.FK_MyCallTree_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="MyCallTree" EntitySet="MyCallTree" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyHelpers_Registration" Association="Self.FK_MyHelpers_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="MyHelpers" EntitySet="MyHelpers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyHelpers_UserRegistration" Association="Self.FK_MyHelpers_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="MyHelpers" EntitySet="MyHelpers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyMedicines_Registration" Association="Self.FK_MyMedicines_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="MyMedicines" EntitySet="MyMedicines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyMedicines_UserRegistration" Association="Self.FK_MyMedicines_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="MyMedicines" EntitySet="MyMedicines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyNeighbors_Registration" Association="Self.FK_MyNeighbors_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="MyNeighbors" EntitySet="MyNeighbors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyNeighbors_UserRegistration" Association="Self.FK_MyNeighbors_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="MyNeighbors" EntitySet="MyNeighbors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MySafePlaces_Registration" Association="Self.FK_MySafePlaces_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="MySafePlaces" EntitySet="MySafePlaces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MySafePlaces_UserRegistration" Association="Self.FK_MySafePlaces_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="MySafePlaces" EntitySet="MySafePlaces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Registration_UserRoles" Association="Self.FK_Registration_UserRoles">
+      <End Role="UserRoles" EntitySet="UserRoles" />
+      <End Role="Registration" EntitySet="Registration" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserQuestions_AdminQuestions" Association="Self.FK_UserQuestions_AdminQuestions">
+      <End Role="AdminQuestions" EntitySet="AdminQuestions" />
+      <End Role="UserQuestions" EntitySet="UserQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserQuestions_Registration" Association="Self.FK_UserQuestions_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="UserQuestions" EntitySet="UserQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserQuestions_UserRegistration" Association="Self.FK_UserQuestions_UserRegistration">
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+      <End Role="UserQuestions" EntitySet="UserQuestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRegistration_Registration" Association="Self.FK_UserRegistration_Registration">
+      <End Role="Registration" EntitySet="Registration" />
+      <End Role="UserRegistration" EntitySet="UserRegistration" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

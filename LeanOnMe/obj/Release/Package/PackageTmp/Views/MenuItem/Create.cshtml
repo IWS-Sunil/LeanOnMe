@@ -1,0 +1,183 @@
+﻿@model DataAccess.Models.MenuItem
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+}
+<div class="container">
+    <div class="section">
+        <div class="section" id="basic-form">
+            <div class="row">
+
+            </div>
+            <div class="row">
+                <div class="col s12 m12 l6">
+                    <div class="card-panel">
+                        <h4 class="header2">New Menu Item</h4>
+                        <div class="row">
+                            @using (Html.BeginForm("Create", "MenuItem", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                <table class="table-bordered">
+                                    <tr>
+                                        <td>
+                                            Menu-Page ID
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.PageID, new { @placeholder = "Click the Item from the Menu page Help List" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Menu Item Text
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.MenuItemText)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Menu Item Icon
+                                        </td>
+                                        <td>
+                                            <input type="file" name="file" id="file" accept="image/*" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Menu Item Link
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.MenuItemLink)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Menu Item Position
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.MenuItemPosition)
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+
+                                    <div class="input-field col s12">
+                                        <div class=" col s6 ">
+                                            <a href="@Url.Action("Index")" class="btn cyan waves-effect waves-light left">
+                                                Go Back<i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
+                                        <div class=" col s6">
+                                            <button name="action" type="submit" class="btn cyan waves-effect waves-light right">Submit <i class="mdi-content-send right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col s12 m12 l6 hidden-xs" id="div1">
+                    <div class="card-panel">
+                        <div class="row">
+                            <fieldset>
+                                <legend><strong> Menu Page Help List</strong></legend>
+                                <div class="col-lg-2 col-md-2 col-sm-2 no-right-pad ">
+                                    <input type="text" class="validate" placeholder="Search" style="width:20%" id="search" />
+                                </div>
+                                @{
+                                    var list = HttpContext.Current.Session["table"] as List<DataAccess.Models.MenuPage>;
+                                    <table class="table table-striped responsive-utilities jambo_table bulk_action striped" id="tblsearch">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <strong style="color:dodgerblue">Page ID</strong> 
+                                                </th>
+                                                <th>
+                                                    <strong style="color:dodgerblue">Page Name</strong>
+                                                
+                                                </th>
+                                                <th>
+                                                    <strong style="color:dodgerblue">Page Level</strong>
+                                                   
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in list)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PageID)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PageName)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PageLevel)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                }
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var msg = '@ViewBag.success';
+        if (msg != "" || msg.length > 0) {
+            alert(msg);
+            $("input[type=text]").val("");
+        }
+        $('#search').keyup(function () {
+            searchTable($(this).val());
+        });
+        
+        $('#PageID').click(function () {          
+            $('#div1').removeClass('hidden-xs');
+            $('#div1').addClass('showPop');
+        });
+        $('#tblsearch').on('click', 'tbody tr', function () {
+            var id = ($(this).find('td:nth-child(1)').text());
+            $('#PageID').val(id.trim());
+            $('#div1').addClass('hidden-xs');
+            $('#div1').removeClass('showPop');           
+        });
+
+
+
+    });
+    function searchTable(inputVal) {
+        var table = $('#tblsearch');
+        table.find('tbody tr').each(function (index, row) {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0) {
+                var found = false;
+                allCells.each(function (index, td) {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text())) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true) $(row).show(); else $(row).hide();
+            }
+        });
+    }
+</script>

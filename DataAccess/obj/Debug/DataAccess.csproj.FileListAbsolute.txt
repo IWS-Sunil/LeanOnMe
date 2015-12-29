@@ -1,0 +1,10 @@
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\bin\Debug\DataAccess.dll.config
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\bin\Debug\DataAccess.dll
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\bin\Debug\DataAccess.pdb
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\bin\Debug\EntityFramework.dll
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\bin\Debug\EntityFramework.xml
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\obj\Debug\DataAccess.dll
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\obj\Debug\DataAccess.pdb
+D:\Visual Studio 2015 Projects\Lean On Me\LeanOnMe\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache

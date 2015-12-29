@@ -1,0 +1,108 @@
+﻿@model PagedList.IPagedList<DataAccess.Models.AdminQuestion>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+}
+<div class="container">
+    <div class="section">
+        <div class="section" id="basic-form">
+            <div class="row">
+                <fieldset>
+                    <legend>Admin Questions View</legend>
+                    <div class="col-lg-2 col-md-2 col-sm-2 no-right-pad ">
+                        <input type="text" class="validate" placeholder="Search" style="width:20%" id="search" />
+                        @using (Html.BeginForm("AddQuestion", "AdminQuestion"))
+                        {
+                            <button name="action" type="submit" class="btn cyan waves-effect waves-light right" style="margin-top: 15px;">Add New Question<i class="mdi-content-send right"></i></button>
+                        }                        
+                    </div>
+                    <table class="table table-striped responsive-utilities jambo_table bulk_action" id="tblsearch">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.ActionLink("#.", "Index", new { sortOrder = ViewBag.QuestionIdSort, currentFilter = ViewBag.CurrentFilter })
+                                </th>
+                                <th>
+                                   @Html.ActionLink("Question", "Index", new { sortOrder = ViewBag.QuestionSort, currentFilter = ViewBag.CurrentFilter })
+                                </th>
+                                <th class="hidden-xs">
+                                    @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationSort, currentFilter = ViewBag.CurrentFilter })
+                                </th>
+                                <th class="hidden-xs">
+                                    @Html.ActionLink("Addl.Info", "Index", new { sortOrder = ViewBag.InfoSort, currentFilter = ViewBag.CurrentFilter })
+                                </th>
+                                <th></th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(var item in Model)
+                            {
+                                <tr>
+                                    <td >
+                                        @Html.DisplayFor(modelItem => item.QuestionID)
+                                    </td>
+                               
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.QuestionText)
+                                    </td>
+                                
+                                    <td class="hidden-xs">
+                                        @Html.DisplayFor(modelItem => item.Location)
+                                    </td>
+                              
+                                    <td class="hidden-xs">
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit","Edit", new {id=item.QuestionID }) |
+                                        @Html.ActionLink("Delete","Delete", new { id = item.QuestionID }, new {@class= "Clicklink" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <p>
+                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    </p>
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#search').keyup(function () {            
+            searchTable($(this).val());
+        });
+        $(".Clicklink").click(function () {
+            var r = confirm("Are you sure you want to delete this?");
+            if (r == true) {
+                return true;
+            } else {
+                return false;
+            }
+        });
+    });
+    function searchTable(inputVal) {
+        var table = $('#tblsearch');
+        table.find('tbody tr').each(function (index, row) {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0) {
+                var found = false;
+                allCells.each(function (index, td) {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text())) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true) $(row).show(); else $(row).hide();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,218 @@
+﻿@model DataAccess.Models.DoctorList
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+    <style>
+        #maps {
+            height: 600px !important;
+            width: 700px !important;
+        }
+    </style>
+}
+<div class="container">
+    <div class="section">
+        <div class="section" id="basic-form">
+            <div class="row">
+                <div class="col s12 m12 l10">
+                    <div class="card-panel">
+                        <h4 class="header2">Add Doctor</h4>
+                        <div class="row">
+                            @using (Html.BeginForm("Create", "DoctorList", FormMethod.Post, new { enctype = "multipart/form-data", id = "TheForm" }))
+                            {
+                                <table class="rwd-table">
+                                    @{
+                                        string role = Convert.ToString(Session["RoleName"]);
+                                        if (role == "Admin")
+                                        {
+                                            <tr>
+                                                <td>
+                                                    Helper
+                                                </td>
+                                                <td>
+                                                    @Html.DropDownList("HelperID", (SelectList)ViewBag.HelperID, new { onchange = "document.getElementById('TheForm').submit();" })
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    <tr>
+                                        <td>
+                                            User
+                                        </td>
+                                        <td>
+                                            @Html.DropDownList("UserID", (SelectList)ViewBag.UserID)
+                                        </td>
+
+                                        <td>
+                                            Doctor Name
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.DoctorName)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Speciality
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Speciality)
+                                        </td>
+
+                                        <td>
+                                            Organisation
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Organisation)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Street Address
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.StreetAddress)
+                                        </td>
+
+                                        <td>
+                                            City
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.City)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            State
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.State)
+                                        </td>
+
+                                        <td>
+                                            Zip Code
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.ZipCode)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Phone
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.BusinessPhoneNumber)
+                                        </td>
+
+                                        <td>
+                                            Fax
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.FaxNumber)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Mobile
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Mobile)
+                                        </td>
+                                        <td>
+                                            Notes
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Notes)
+                                        </td>
+                                    </tr>
+                                    <tr id="loc">
+                                        <td>
+                                            Location
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Coordinates, new { id = "locations" })
+                                        </td>
+                                        <td>
+                                            Image
+                                        </td>
+                                        <td>
+                                            <input type="file" name="file" id="file" accept="image/*" />
+                                        </td>
+                                    </tr>
+
+                                </table>
+                                <div class="section" id="modals-demo">
+                                    <div class="row">
+                                        <div class="col s12 m8 l9">
+                                            <p>
+                                                <a href="#modal1" id="setloc" style="display:none" class="waves-effect waves-light btn modal-trigger  light-blue" onclick=' return initialize();'>Location</a>
+                                            </p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="input-field col s12">
+                                        <div class=" col s6 ">
+                                            @*<button name="action" type="submit" class="btn cyan waves-effect waves-light left" onclick="window.location.href = '/AdminQuestion/Index';">Go Back<i class="mdi-content-send right"></i></button>*@
+
+                                            <a href="@Url.Action("Index")" class="btn cyan waves-effect waves-light left">
+                                                Go Back<i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
+                                        <div class=" col s6">
+                                            <button name="action" type="submit" class="btn cyan waves-effect waves-light right">Submit <i class="mdi-content-send right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                        }
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator add-row-btn"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modalTest" id="modal1" style="width:700px;height:600px">
+    <div id="maps">
+    </div>
+</div>
+<script type="text/javascript">
+    var map;
+    function initialize() {
+        navigator.geolocation.getCurrentPosition(success);
+        function success(position) {
+            latlngs = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+            var mapProp = {
+                center: latlngs, //Pick up user current Location
+                zoom: 5,
+                mapTypeId: google.maps.MapTypeId.G_NORMAL_MAP
+            };
+            map = new google.maps.Map(document.getElementById("maps"), mapProp);
+            google.maps.event.addListener(map, 'click', function (e) {
+                var latLng = e.latLng;
+                $('#locations').val(latLng);
+                $('#loc').css('display', 'table-row');
+                $('#modal1').hide();
+                $('#lean-overlay').hide();
+            });
+        }
+    }
+    // google.maps.event.addDomListener(window, "load", initialize);
+    google.maps.event.trigger(map, 'resize');
+</script>
+<script>
+    $(document).ready(function () {
+        $("#locations").on('click', function () {
+            $('#setloc').click();
+        });
+    });
+</script>

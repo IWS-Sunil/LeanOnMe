@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="19be97a76bea41c7be7ff282d856b97a" Name="Diagram1">
+        <EntityTypeShape EntityType="LeanOnMeModel.AdminQuestion" Width="1.5" PointX="2.125" PointY="0.75" />
+        <EntityTypeShape EntityType="LeanOnMeModel.Registration" Width="1.5" PointX="0.5" PointY="0.625" />
+        <EntityTypeShape EntityType="LeanOnMeModel.UserQuestion" Width="1.5" PointX="3.875" PointY="0.625" />
+        <EntityTypeShape EntityType="LeanOnMeModel.UserRegistration" Width="1.5" PointX="5.5" PointY="0.625" />
+        <AssociationConnector Association="LeanOnMeModel.FK_UserQuestions_AdminQuestions" />
+        <AssociationConnector Association="LeanOnMeModel.FK_UserQuestions_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_UserRegistration_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_UserQuestions_UserRegistration" />
+        <EntityTypeShape EntityType="LeanOnMeModel.UserRole" Width="1.5" PointX="7.125" PointY="0.625" />
+        <AssociationConnector Association="LeanOnMeModel.FK_Registration_UserRoles" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MenuItem" Width="1.5" PointX="8.75" PointY="0.625" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MenuPage" Width="1.5" PointX="7.125" PointY="2.375" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MenuItem_MenuPage" />
+        <EntityTypeShape EntityType="LeanOnMeModel.DoctorList" Width="1.5" PointX="10.375" PointY="0.625" />
+        <AssociationConnector Association="LeanOnMeModel.FK_DoctorList_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_DoctorList_UserRegistration" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MyHelper" Width="1.5" PointX="13.75" PointY="0.625" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MyMedicine" Width="1.5" PointX="12.125" PointY="0.625" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyHelpers_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyHelpers_UserRegistration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyMedicines_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyMedicines_UserRegistration" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MedicalCondition" Width="1.5" PointX="12.125" PointY="4" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MyCallTree" Width="1.5" PointX="2.125" PointY="3" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MyNeighbor" Width="1.5" PointX="3.875" PointY="3.875" />
+        <EntityTypeShape EntityType="LeanOnMeModel.MySafePlace" Width="1.5" PointX="8.75" PointY="3.125" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MedicalConditions_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MedicalConditions_UserRegistration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyCallTree_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyCallTree_UserRegistration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyNeighbors_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MyNeighbors_UserRegistration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MySafePlaces_Registration" />
+        <AssociationConnector Association="LeanOnMeModel.FK_MySafePlaces_UserRegistration" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

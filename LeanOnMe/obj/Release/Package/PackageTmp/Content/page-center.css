@@ -1,0 +1,23 @@
+html,
+body {
+    height: 100%;
+}
+html {
+    display: table;
+    margin: auto;
+}
+body {
+    display: table-cell;
+    vertical-align: middle;
+}
+#login-pages {
+    display:block;
+    margin:25px!important;
+}
+
+.html1{
+    display:block;
+}
+.html2{
+    display:table;
+}

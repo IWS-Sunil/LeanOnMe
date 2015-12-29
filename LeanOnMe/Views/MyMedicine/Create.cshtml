@@ -1,0 +1,134 @@
+﻿@model DataAccess.Models.MyMedicine
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
+
+    <style>
+        #maps {
+            height: 600px !important;
+            width: 700px !important;
+        }
+    </style>
+}
+<div class="container">
+    <div class="section">
+        <div class="section" id="basic-form">
+            <div class="row">
+                <div class="col s12 m12 l10">
+                    <div class="card-panel">
+                        <h4 class="header2">Add Medicines</h4>
+                        <div class="row">
+                            @using (Html.BeginForm("Create", "MyMedicine", FormMethod.Post, new { enctype = "multipart/form-data",id="TheForm" }))
+                            {
+                                <table class="rwd-table">
+                                    @{
+                                        string role = Convert.ToString(Session["RoleName"]);
+                                        if (role == "Admin")
+                                        {
+                                            <tr>
+                                                <td>
+                                                    Helper
+                                                </td>
+                                                <td>
+                                                    @Html.DropDownList("HelperID", (SelectList)ViewBag.HelperID, new { onchange = "document.getElementById('TheForm').submit();" })
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
+                                    <tr>
+                                        <td>
+                                            User
+                                        </td>
+                                        <td>
+                                            @Html.DropDownList("UserID", (SelectList)ViewBag.UserID)
+                                        </td>
+
+                                        <td>
+                                            Medicine Name
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.MedicineName)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Dosage Per Pill
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.DosagePerPill)
+                                        </td>
+
+                                        <td>
+                                            Pills Per Dose
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.PillsPerDose)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Days to Take
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.Weekdays)
+                                        </td>
+
+                                        <td>
+                                            Times Taken
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.TimesTaken)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Prescribed By
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.PrescribedDoctor)
+                                        </td>
+
+                                        <td>
+                                            Prescriber Contact
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.DoctorContact)
+                                        </td>
+                                    </tr>                                   
+                                    <tr>
+                                        <td>
+                                            Image
+                                        </td>
+                                        <td>
+                                            <input type="file" name="file" id="file" accept="images/*" />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <div class=" col s6 ">
+                                            <a href="@Url.Action("Index")" class="btn cyan waves-effect waves-light left">
+                                                Go Back<i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
+                                        <div class=" col s6">
+                                            <button name="action" type="submit" class="btn cyan waves-effect waves-light right">Submit <i class="mdi-content-send right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator add-row-btn"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

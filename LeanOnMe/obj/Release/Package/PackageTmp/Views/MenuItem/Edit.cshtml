@@ -1,0 +1,173 @@
+﻿@model DataAccess.Models.MenuItem
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+}
+<div class="container">
+    <div class="section">
+        <div class="section" id="basic-form">
+            <div class="row">
+            </div>
+            <div class="row">
+                <div class="col s12 m12 l6">
+                    <div class="card-panel">
+                        <h4 class="header2">Modify Menu Item Details</h4>
+                        <div class="row">
+                            @using (Html.BeginForm("Edit", "MenuItem", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.HiddenFor(m=>m.MenuItemID)
+                                @Html.HiddenFor(m=>m.MenuItemIcon)
+                                <table class="table-bordered">
+                                    <tr>
+                                        <td>
+                                            Menu-Page ID
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.PageID, new { @placeholder = "Pick from the Menu page Help List" })
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Menu Item Text
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.MenuItemText)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Menu Item Icon
+                                        </td>
+                                        <td>
+                                            <input type="file" name="file" id="file" accept="image/*" value="@Model.MenuItemIcon" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>
+                                            Menu Item Link
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.MenuItemLink)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Menu Item Position
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.MenuItemPosition)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="row margin">
+                                                <div class="input-field col s12">
+                                                    <img src="~/Uploads/AdminLevel/@Model.MenuItemIcon" alt="" height="120px" width="120px" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <div class=" col s6 ">
+                                            <a href="@Url.Action("Index")" class="btn cyan waves-effect waves-light left">
+                                                Go Back<i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
+                                        <div class=" col s6">
+                                            <button name="action" type="submit" class="btn cyan waves-effect waves-light right">Save<i class="mdi-content-send right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col s12 m12 l6">
+                    <div class="card-panel">
+                        <div class="row">
+                            <fieldset>
+                                <legend><strong> Menu Page Help List</strong></legend>
+                                <div class="col-lg-2 col-md-2 col-sm-2 no-right-pad ">
+                                    <input type="text" class="validate" placeholder="Search" style="width:20%" id="search" />
+                                </div>
+                                @{
+                                    var list = HttpContext.Current.Session["table"] as List<DataAccess.Models.MenuPage>;
+
+                                    <table class="table table-striped responsive-utilities jambo_table bulk_action" id="tblsearch">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    @Html.ActionLink("Page ID", "Index", new { sortOrder = ViewBag.PageIDSort, currentFilter = ViewBag.CurrentFilter })
+                                                </th>
+                                                <th>
+                                                    @Html.ActionLink("Page Name", "Index", new { sortOrder = ViewBag.PageNameSort, currentFilter = ViewBag.CurrentFilter })
+                                                </th>
+                                                <th class="hidden-xs">
+                                                    @Html.ActionLink("Page Level", "Index", new { sortOrder = ViewBag.PageLevelSort, currentFilter = ViewBag.CurrentFilter })
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in list)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PageID)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.PageName)
+                                                    </td>
+
+                                                    <td class="hidden-xs">
+                                                        @Html.DisplayFor(modelItem => item.PageLevel)
+                                                    </td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+
+                                }
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var msg = '@ViewBag.success';
+        if (msg != "" || msg.length > 0) {
+            alert(msg);
+            $("input[type=text]").val("");
+        }
+        $('#search').keyup(function () {
+            searchTable($(this).val());
+        });
+    });
+    function searchTable(inputVal) {
+        var table = $('#tblsearch');
+        table.find('tbody tr').each(function (index, row) {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0) {
+                var found = false;
+                allCells.each(function (index, td) {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text())) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true) $(row).show(); else $(row).hide();
+            }
+        });
+    }
+</script>

@@ -1,0 +1,77 @@
+﻿@model List<DataAccess.Models.MenuPage>
+
+@{
+    ViewBag.Title = "Index";
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+}
+<div class="container">
+    <div class="section">
+        <div class="section" id="basic-form">
+            <div class="row">
+                <fieldset>
+                    <legend>Menu Page View</legend>
+                    <div class="col-lg-2 col-md-2 col-sm-2 no-right-pad ">
+                        <input type="text" class="validate" placeholder="Search" style="width:20%" id="search" />
+                    </div>
+                    <table class="table table-striped responsive-utilities jambo_table bulk_action" id="tblsearch">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.ActionLink("Page ID", "GetPages", new { sortOrder = ViewBag.PageIDSort, currentFilter = ViewBag.CurrentFilter })
+                                </th>
+                                <th>
+                                    @Html.ActionLink("Page Name", "GetPages", new { sortOrder = ViewBag.PageNameSort, currentFilter = ViewBag.CurrentFilter })
+                                </th>
+                                <th class="hidden-xs">
+                                    @Html.ActionLink("Page Level", "GetPages", new { sortOrder = ViewBag.PageLevelSort, currentFilter = ViewBag.CurrentFilter })
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PageID)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.PageName)
+                                    </td>
+
+                                    <td class="hidden-xs">
+                                        @Html.DisplayFor(modelItem => item.PageLevel)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>                    
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#search').keyup(function () {
+            searchTable($(this).val());
+        });
+    });
+    function searchTable(inputVal) {
+        var table = $('#tblsearch');
+        table.find('tbody tr').each(function (index, row) {
+            var allCells = $(row).find('td');
+            if (allCells.length > 0) {
+                var found = false;
+                allCells.each(function (index, td) {
+                    var regExp = new RegExp(inputVal, 'i');
+                    if (regExp.test($(td).text())) {
+                        found = true;
+                        return false;
+                    }
+                });
+                if (found == true) $(row).show(); else $(row).hide();
+            }
+        });
+    }
+</script>

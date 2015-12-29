@@ -1,0 +1,1420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="LeanOnMeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminQuestions">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionText" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Image" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Location" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="DoctorList">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HelperID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="DoctorName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Speciality" Type="nvarchar" MaxLength="200" />
+          <Property Name="Organisation" Type="nvarchar" MaxLength="200" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+          <Property Name="BusinessPhoneNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MedicalConditions">
+          <Key>
+            <PropertyRef Name="MedicalID" />
+          </Key>
+          <Property Name="MedicalID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommonName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="MedicalName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="YearDiagnosed" Type="nvarchar" MaxLength="50" />
+          <Property Name="DoctorDiagnosed" Type="nvarchar" MaxLength="200" />
+          <Property Name="Restrictions" Type="nvarchar" MaxLength="200" />
+          <Property Name="HelperID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="MenuItemID" />
+          </Key>
+          <Property Name="MenuItemID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageID" Type="bigint" Nullable="false" />
+          <Property Name="MenuItemIcon" Type="nvarchar" MaxLength="200" />
+          <Property Name="MenuItemText" Type="nvarchar" MaxLength="200" />
+          <Property Name="MenuItemLink" Type="nvarchar" MaxLength="200" />
+          <Property Name="MenuItemPosition" Type="bigint" />
+        </EntityType>
+        <EntityType Name="MenuPage">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PageName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PageLevel" Type="nvarchar" MaxLength="200" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MyCallTree">
+          <Key>
+            <PropertyRef Name="CallTreeID" />
+          </Key>
+          <Property Name="CallTreeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" />
+          <Property Name="Organistaion" Type="nvarchar" MaxLength="200" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="BusinessNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+          <Property Name="HelperID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MyHelpers">
+          <Key>
+            <PropertyRef Name="MyHelperID" />
+          </Key>
+          <Property Name="MyHelperID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="100" />
+          <Property Name="Organistaion" Type="nvarchar" MaxLength="200" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="BusinessNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+          <Property Name="HelperID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MyMedicines">
+          <Key>
+            <PropertyRef Name="MedicineID" />
+          </Key>
+          <Property Name="MedicineID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HelperID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="MedicineName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DosagePerPill" Type="nvarchar" MaxLength="100" />
+          <Property Name="PillsPerDose" Type="nvarchar" MaxLength="200" />
+          <Property Name="Weekdays" Type="nvarchar" MaxLength="200" />
+          <Property Name="TimesTaken" Type="nvarchar" MaxLength="100" />
+          <Property Name="PrescribedDoctor" Type="nvarchar" MaxLength="200" />
+          <Property Name="DoctorContact" Type="nvarchar" MaxLength="100" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MyNeighbors">
+          <Key>
+            <PropertyRef Name="NeighborID" />
+          </Key>
+          <Property Name="NeighborID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="300" />
+          <Property Name="City" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+          <Property Name="HelperID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MySafePlaces">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PlaceName" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="StreetAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="State" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Coordinates" Type="nvarchar" MaxLength="100" />
+          <Property Name="HomeNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="BusinessNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="300" />
+          <Property Name="HelperID" Type="bigint" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="Images" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="100" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="300" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserQuestions">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="bigint" Nullable="false" />
+          <Property Name="UserID" Type="bigint" />
+          <Property Name="QuestionText" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" />
+          <Property Name="Image" Type="nvarchar" MaxLength="200" />
+          <Property Name="Location" Type="nvarchar" MaxLength="100" />
+          <Property Name="LeanID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserRegistration">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="HelperID" Type="bigint" Nullable="false" />
+          <Property Name="ProfileImage" Type="nvarchar" MaxLength="100" />
+          <Property Name="OTP" Type="nvarchar" MaxLength="10" />
+          <Property Name="RegDate" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="UserRoles">
+          <Key>
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_DoctorList_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="DoctorList" Type="Self.DoctorList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DoctorList">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorList_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="DoctorList" Type="Self.DoctorList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DoctorList">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalConditions_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="MedicalConditions" Type="Self.MedicalConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MedicalConditions">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalConditions_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="MedicalConditions" Type="Self.MedicalConditions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MedicalConditions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MenuItem_MenuPage">
+          <End Role="MenuPage" Type="Self.MenuPage" Multiplicity="1" />
+          <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuPage">
+              <PropertyRef Name="PageID" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyCallTree_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="MyCallTree" Type="Self.MyCallTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyCallTree">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyCallTree_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="MyCallTree" Type="Self.MyCallTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyCallTree">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyHelpers_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="MyHelpers" Type="Self.MyHelpers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyHelpers">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyHelpers_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="MyHelpers" Type="Self.MyHelpers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyHelpers">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyMedicines_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="MyMedicines" Type="Self.MyMedicines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyMedicines">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyMedicines_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="MyMedicines" Type="Self.MyMedicines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyMedicines">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyNeighbors_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="MyNeighbors" Type="Self.MyNeighbors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyNeighbors">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyNeighbors_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="MyNeighbors" Type="Self.MyNeighbors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyNeighbors">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MySafePlaces_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="MySafePlaces" Type="Self.MySafePlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MySafePlaces">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MySafePlaces_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="MySafePlaces" Type="Self.MySafePlaces" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MySafePlaces">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Registration_UserRoles">
+          <End Role="UserRoles" Type="Self.UserRoles" Multiplicity="0..1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRoles">
+              <PropertyRef Name="Role" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuestions_AdminQuestions">
+          <End Role="AdminQuestions" Type="Self.AdminQuestions" Multiplicity="1" />
+          <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminQuestions">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="UserQuestions">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuestions_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="0..1" />
+          <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserQuestions">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuestions_UserRegistration">
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="0..1" />
+          <End Role="UserQuestions" Type="Self.UserQuestions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserQuestions">
+              <PropertyRef Name="LeanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRegistration_Registration">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="1" />
+          <End Role="UserRegistration" Type="Self.UserRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRegistration">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="nvarchar" Mode="In" />
+          <Parameter Name="password" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="LeanOnMeModelStoreContainer">
+          <EntitySet Name="AdminQuestions" EntityType="Self.AdminQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoctorList" EntityType="Self.DoctorList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedicalConditions" EntityType="Self.MedicalConditions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuPage" EntityType="Self.MenuPage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyCallTree" EntityType="Self.MyCallTree" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyHelpers" EntityType="Self.MyHelpers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyMedicines" EntityType="Self.MyMedicines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MyNeighbors" EntityType="Self.MyNeighbors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MySafePlaces" EntityType="Self.MySafePlaces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserQuestions" EntityType="Self.UserQuestions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRegistration" EntityType="Self.UserRegistration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRoles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DoctorList_Registration" Association="Self.FK_DoctorList_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="DoctorList" EntitySet="DoctorList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorList_UserRegistration" Association="Self.FK_DoctorList_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="DoctorList" EntitySet="DoctorList" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalConditions_Registration" Association="Self.FK_MedicalConditions_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="MedicalConditions" EntitySet="MedicalConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalConditions_UserRegistration" Association="Self.FK_MedicalConditions_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="MedicalConditions" EntitySet="MedicalConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MenuItem_MenuPage" Association="Self.FK_MenuItem_MenuPage">
+            <End Role="MenuPage" EntitySet="MenuPage" />
+            <End Role="MenuItem" EntitySet="MenuItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyCallTree_Registration" Association="Self.FK_MyCallTree_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="MyCallTree" EntitySet="MyCallTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyCallTree_UserRegistration" Association="Self.FK_MyCallTree_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="MyCallTree" EntitySet="MyCallTree" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyHelpers_Registration" Association="Self.FK_MyHelpers_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="MyHelpers" EntitySet="MyHelpers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyHelpers_UserRegistration" Association="Self.FK_MyHelpers_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="MyHelpers" EntitySet="MyHelpers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyMedicines_Registration" Association="Self.FK_MyMedicines_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="MyMedicines" EntitySet="MyMedicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyMedicines_UserRegistration" Association="Self.FK_MyMedicines_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="MyMedicines" EntitySet="MyMedicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyNeighbors_Registration" Association="Self.FK_MyNeighbors_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="MyNeighbors" EntitySet="MyNeighbors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyNeighbors_UserRegistration" Association="Self.FK_MyNeighbors_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="MyNeighbors" EntitySet="MyNeighbors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MySafePlaces_Registration" Association="Self.FK_MySafePlaces_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="MySafePlaces" EntitySet="MySafePlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MySafePlaces_UserRegistration" Association="Self.FK_MySafePlaces_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="MySafePlaces" EntitySet="MySafePlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registration_UserRoles" Association="Self.FK_Registration_UserRoles">
+            <End Role="UserRoles" EntitySet="UserRoles" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuestions_AdminQuestions" Association="Self.FK_UserQuestions_AdminQuestions">
+            <End Role="AdminQuestions" EntitySet="AdminQuestions" />
+            <End Role="UserQuestions" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuestions_Registration" Association="Self.FK_UserQuestions_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="UserQuestions" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuestions_UserRegistration" Association="Self.FK_UserQuestions_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+            <End Role="UserQuestions" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRegistration_Registration" Association="Self.FK_UserRegistration_Registration">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="UserRegistration" EntitySet="UserRegistration" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LeanOnMeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LeanOnMeEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="spLogin" ReturnType="Collection(LeanOnMeModel.spLogin_Result)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="AdminQuestions" EntityType="LeanOnMeModel.AdminQuestion" />
+          <EntitySet Name="Registrations" EntityType="LeanOnMeModel.Registration" />
+          <EntitySet Name="UserQuestions" EntityType="LeanOnMeModel.UserQuestion" />
+          <EntitySet Name="UserRegistrations" EntityType="LeanOnMeModel.UserRegistration" />
+          <AssociationSet Name="FK_UserQuestions_AdminQuestions" Association="LeanOnMeModel.FK_UserQuestions_AdminQuestions">
+            <End Role="AdminQuestion" EntitySet="AdminQuestions" />
+            <End Role="UserQuestion" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuestions_Registration" Association="LeanOnMeModel.FK_UserQuestions_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="UserQuestion" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserRegistration_Registration" Association="LeanOnMeModel.FK_UserRegistration_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserQuestions_UserRegistration" Association="LeanOnMeModel.FK_UserQuestions_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="UserQuestion" EntitySet="UserQuestions" />
+          </AssociationSet>
+          <EntitySet Name="UserRoles" EntityType="LeanOnMeModel.UserRole" />
+          <AssociationSet Name="FK_Registration_UserRoles" Association="LeanOnMeModel.FK_Registration_UserRoles">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <EntitySet Name="MenuItems" EntityType="LeanOnMeModel.MenuItem" />
+          <EntitySet Name="MenuPages" EntityType="LeanOnMeModel.MenuPage" />
+          <AssociationSet Name="FK_MenuItem_MenuPage" Association="LeanOnMeModel.FK_MenuItem_MenuPage">
+            <End Role="MenuPage" EntitySet="MenuPages" />
+            <End Role="MenuItem" EntitySet="MenuItems" />
+          </AssociationSet>
+          <EntitySet Name="DoctorLists" EntityType="LeanOnMeModel.DoctorList" />
+          <AssociationSet Name="FK_DoctorList_Registration" Association="LeanOnMeModel.FK_DoctorList_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="DoctorList" EntitySet="DoctorLists" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorList_UserRegistration" Association="LeanOnMeModel.FK_DoctorList_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="DoctorList" EntitySet="DoctorLists" />
+          </AssociationSet>
+          <EntitySet Name="MyHelpers" EntityType="LeanOnMeModel.MyHelper" />
+          <EntitySet Name="MyMedicines" EntityType="LeanOnMeModel.MyMedicine" />
+          <AssociationSet Name="FK_MyHelpers_Registration" Association="LeanOnMeModel.FK_MyHelpers_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="MyHelper" EntitySet="MyHelpers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyHelpers_UserRegistration" Association="LeanOnMeModel.FK_MyHelpers_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="MyHelper" EntitySet="MyHelpers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyMedicines_Registration" Association="LeanOnMeModel.FK_MyMedicines_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="MyMedicine" EntitySet="MyMedicines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyMedicines_UserRegistration" Association="LeanOnMeModel.FK_MyMedicines_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="MyMedicine" EntitySet="MyMedicines" />
+          </AssociationSet>
+          <EntitySet Name="MedicalConditions" EntityType="LeanOnMeModel.MedicalCondition" />
+          <EntitySet Name="MyCallTrees" EntityType="LeanOnMeModel.MyCallTree" />
+          <EntitySet Name="MyNeighbors" EntityType="LeanOnMeModel.MyNeighbor" />
+          <EntitySet Name="MySafePlaces" EntityType="LeanOnMeModel.MySafePlace" />
+          <AssociationSet Name="FK_MedicalConditions_Registration" Association="LeanOnMeModel.FK_MedicalConditions_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="MedicalCondition" EntitySet="MedicalConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedicalConditions_UserRegistration" Association="LeanOnMeModel.FK_MedicalConditions_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="MedicalCondition" EntitySet="MedicalConditions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyCallTree_Registration" Association="LeanOnMeModel.FK_MyCallTree_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="MyCallTree" EntitySet="MyCallTrees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyCallTree_UserRegistration" Association="LeanOnMeModel.FK_MyCallTree_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="MyCallTree" EntitySet="MyCallTrees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyNeighbors_Registration" Association="LeanOnMeModel.FK_MyNeighbors_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="MyNeighbor" EntitySet="MyNeighbors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyNeighbors_UserRegistration" Association="LeanOnMeModel.FK_MyNeighbors_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="MyNeighbor" EntitySet="MyNeighbors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MySafePlaces_Registration" Association="LeanOnMeModel.FK_MySafePlaces_Registration">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="MySafePlace" EntitySet="MySafePlaces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MySafePlaces_UserRegistration" Association="LeanOnMeModel.FK_MySafePlaces_UserRegistration">
+            <End Role="UserRegistration" EntitySet="UserRegistrations" />
+            <End Role="MySafePlace" EntitySet="MySafePlaces" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="spLogin_Result">
+          <Property Type="Int64" Name="UserID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="EmailID" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Address" Nullable="true" MaxLength="300" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Image" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <EntityType Name="AdminQuestion">
+          <Key>
+            <PropertyRef Name="QuestionID" />
+          </Key>
+          <Property Name="QuestionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserQuestions" Relationship="LeanOnMeModel.FK_UserQuestions_AdminQuestions" FromRole="AdminQuestion" ToRole="UserQuestion" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserQuestions" Relationship="LeanOnMeModel.FK_UserQuestions_Registration" FromRole="Registration" ToRole="UserQuestion" />
+          <NavigationProperty Name="UserRegistrations" Relationship="LeanOnMeModel.FK_UserRegistration_Registration" FromRole="Registration" ToRole="UserRegistration" />
+          <NavigationProperty Name="UserRole" Relationship="LeanOnMeModel.FK_Registration_UserRoles" FromRole="Registration" ToRole="UserRole" />
+          <NavigationProperty Name="DoctorLists" Relationship="LeanOnMeModel.FK_DoctorList_Registration" FromRole="Registration" ToRole="DoctorList" />
+          <NavigationProperty Name="MyHelpers" Relationship="LeanOnMeModel.FK_MyHelpers_Registration" FromRole="Registration" ToRole="MyHelper" />
+          <NavigationProperty Name="MyMedicines" Relationship="LeanOnMeModel.FK_MyMedicines_Registration" FromRole="Registration" ToRole="MyMedicine" />
+          <NavigationProperty Name="MedicalConditions" Relationship="LeanOnMeModel.FK_MedicalConditions_Registration" FromRole="Registration" ToRole="MedicalCondition" />
+          <NavigationProperty Name="MyCallTrees" Relationship="LeanOnMeModel.FK_MyCallTree_Registration" FromRole="Registration" ToRole="MyCallTree" />
+          <NavigationProperty Name="MyNeighbors" Relationship="LeanOnMeModel.FK_MyNeighbors_Registration" FromRole="Registration" ToRole="MyNeighbor" />
+          <NavigationProperty Name="MySafePlaces" Relationship="LeanOnMeModel.FK_MySafePlaces_Registration" FromRole="Registration" ToRole="MySafePlace" />
+        </EntityType>
+        <EntityType Name="UserQuestion">
+          <Key>
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="AnswerID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int64" Nullable="false" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="QuestionText" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LeanID" Type="Int64" />
+          <NavigationProperty Name="AdminQuestion" Relationship="LeanOnMeModel.FK_UserQuestions_AdminQuestions" FromRole="UserQuestion" ToRole="AdminQuestion" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_UserQuestions_Registration" FromRole="UserQuestion" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_UserQuestions_UserRegistration" FromRole="UserQuestion" ToRole="UserRegistration" />
+        </EntityType>
+        <EntityType Name="UserRegistration">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HelperID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_UserRegistration_Registration" FromRole="UserRegistration" ToRole="Registration" />
+          <NavigationProperty Name="UserQuestions" Relationship="LeanOnMeModel.FK_UserQuestions_UserRegistration" FromRole="UserRegistration" ToRole="UserQuestion" />
+          <Property Name="ProfileImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DoctorLists" Relationship="LeanOnMeModel.FK_DoctorList_UserRegistration" FromRole="UserRegistration" ToRole="DoctorList" />
+          <NavigationProperty Name="MyHelpers" Relationship="LeanOnMeModel.FK_MyHelpers_UserRegistration" FromRole="UserRegistration" ToRole="MyHelper" />
+          <NavigationProperty Name="MyMedicines" Relationship="LeanOnMeModel.FK_MyMedicines_UserRegistration" FromRole="UserRegistration" ToRole="MyMedicine" />
+          <NavigationProperty Name="MedicalConditions" Relationship="LeanOnMeModel.FK_MedicalConditions_UserRegistration" FromRole="UserRegistration" ToRole="MedicalCondition" />
+          <NavigationProperty Name="MyCallTrees" Relationship="LeanOnMeModel.FK_MyCallTree_UserRegistration" FromRole="UserRegistration" ToRole="MyCallTree" />
+          <NavigationProperty Name="MyNeighbors" Relationship="LeanOnMeModel.FK_MyNeighbors_UserRegistration" FromRole="UserRegistration" ToRole="MyNeighbor" />
+          <NavigationProperty Name="MySafePlaces" Relationship="LeanOnMeModel.FK_MySafePlaces_UserRegistration" FromRole="UserRegistration" ToRole="MySafePlace" />
+          <Property Name="OTP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="RegDate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_UserQuestions_AdminQuestions">
+          <End Type="LeanOnMeModel.AdminQuestion" Role="AdminQuestion" Multiplicity="1" />
+          <End Type="LeanOnMeModel.UserQuestion" Role="UserQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AdminQuestion">
+              <PropertyRef Name="QuestionID" />
+            </Principal>
+            <Dependent Role="UserQuestion">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuestions_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.UserQuestion" Role="UserQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserQuestion">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRegistration_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="1" />
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserRegistration">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserQuestions_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.UserQuestion" Role="UserQuestion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserQuestion">
+              <PropertyRef Name="LeanID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Role" />
+          </Key>
+          <Property Name="Role" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Registrations" Relationship="LeanOnMeModel.FK_Registration_UserRoles" FromRole="UserRole" ToRole="Registration" />
+        </EntityType>
+        <Association Name="FK_Registration_UserRoles">
+          <End Type="LeanOnMeModel.UserRole" Role="UserRole" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Role" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="MenuItemID" />
+          </Key>
+          <Property Name="MenuItemID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageID" Type="Int64" Nullable="false" />
+          <Property Name="MenuItemIcon" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuItemText" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuItemLink" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MenuItemPosition" Type="Int64" />
+          <NavigationProperty Name="MenuPage" Relationship="LeanOnMeModel.FK_MenuItem_MenuPage" FromRole="MenuItem" ToRole="MenuPage" />
+        </EntityType>
+        <EntityType Name="MenuPage">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PageLevel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MenuItems" Relationship="LeanOnMeModel.FK_MenuItem_MenuPage" FromRole="MenuPage" ToRole="MenuItem" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_MenuItem_MenuPage">
+          <End Type="LeanOnMeModel.MenuPage" Role="MenuPage" Multiplicity="1" />
+          <End Type="LeanOnMeModel.MenuItem" Role="MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuPage">
+              <PropertyRef Name="PageID" />
+            </Principal>
+            <Dependent Role="MenuItem">
+              <PropertyRef Name="PageID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="DoctorList">
+          <Key>
+            <PropertyRef Name="DoctorID" />
+          </Key>
+          <Property Name="DoctorID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HelperID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="DoctorName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Speciality" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Organisation" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessPhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_DoctorList_Registration" FromRole="DoctorList" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_DoctorList_UserRegistration" FromRole="DoctorList" ToRole="UserRegistration" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_DoctorList_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.DoctorList" Role="DoctorList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DoctorList">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorList_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.DoctorList" Role="DoctorList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="DoctorList">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MyHelper">
+          <Key>
+            <PropertyRef Name="MyHelperID" />
+          </Key>
+          <Property Name="MyHelperID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Organistaion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HelperID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_MyHelpers_Registration" FromRole="MyHelper" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_MyHelpers_UserRegistration" FromRole="MyHelper" ToRole="UserRegistration" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MyMedicine">
+          <Key>
+            <PropertyRef Name="MedicineID" />
+          </Key>
+          <Property Name="MedicineID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HelperID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" />
+          <Property Name="MedicineName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DosagePerPill" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PillsPerDose" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Weekdays" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TimesTaken" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PrescribedDoctor" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorContact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_MyMedicines_Registration" FromRole="MyMedicine" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_MyMedicines_UserRegistration" FromRole="MyMedicine" ToRole="UserRegistration" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_MyHelpers_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyHelper" Role="MyHelper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyHelper">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyHelpers_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyHelper" Role="MyHelper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyHelper">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyMedicines_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyMedicine" Role="MyMedicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyMedicine">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyMedicines_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyMedicine" Role="MyMedicine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyMedicine">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MedicalCondition">
+          <Key>
+            <PropertyRef Name="MedicalID" />
+          </Key>
+          <Property Name="MedicalID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommonName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MedicalName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="YearDiagnosed" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DoctorDiagnosed" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Restrictions" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HelperID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_MedicalConditions_Registration" FromRole="MedicalCondition" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_MedicalConditions_UserRegistration" FromRole="MedicalCondition" ToRole="UserRegistration" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MyCallTree">
+          <Key>
+            <PropertyRef Name="CallTreeID" />
+          </Key>
+          <Property Name="CallTreeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Organistaion" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HelperID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_MyCallTree_Registration" FromRole="MyCallTree" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_MyCallTree_UserRegistration" FromRole="MyCallTree" ToRole="UserRegistration" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MyNeighbor">
+          <Key>
+            <PropertyRef Name="NeighborID" />
+          </Key>
+          <Property Name="NeighborID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HelperID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_MyNeighbors_Registration" FromRole="MyNeighbor" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_MyNeighbors_UserRegistration" FromRole="MyNeighbor" ToRole="UserRegistration" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MySafePlace">
+          <Key>
+            <PropertyRef Name="PlaceID" />
+          </Key>
+          <Property Name="PlaceID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PlaceName" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="StreetAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinates" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HomeNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BusinessNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Notes" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="HelperID" Type="Int64" />
+          <Property Name="UserID" Type="Int64" />
+          <NavigationProperty Name="Registration" Relationship="LeanOnMeModel.FK_MySafePlaces_Registration" FromRole="MySafePlace" ToRole="Registration" />
+          <NavigationProperty Name="UserRegistration" Relationship="LeanOnMeModel.FK_MySafePlaces_UserRegistration" FromRole="MySafePlace" ToRole="UserRegistration" />
+          <Property Name="Images" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_MedicalConditions_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MedicalCondition" Role="MedicalCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MedicalCondition">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedicalConditions_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MedicalCondition" Role="MedicalCondition" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MedicalCondition">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyCallTree_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyCallTree" Role="MyCallTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyCallTree">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyCallTree_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyCallTree" Role="MyCallTree" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyCallTree">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyNeighbors_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyNeighbor" Role="MyNeighbor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyNeighbor">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyNeighbors_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MyNeighbor" Role="MyNeighbor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MyNeighbor">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MySafePlaces_Registration">
+          <End Type="LeanOnMeModel.Registration" Role="Registration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MySafePlace" Role="MySafePlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MySafePlace">
+              <PropertyRef Name="HelperID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MySafePlaces_UserRegistration">
+          <End Type="LeanOnMeModel.UserRegistration" Role="UserRegistration" Multiplicity="0..1" />
+          <End Type="LeanOnMeModel.MySafePlace" Role="MySafePlace" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRegistration">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="MySafePlace">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="LeanOnMeModelStoreContainer" CdmEntityContainer="LeanOnMeEntities">
+          <FunctionImportMapping FunctionImportName="spLogin" FunctionName="LeanOnMeModel.Store.spLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="LeanOnMeModel.spLogin_Result">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AdminQuestions">
+            <EntityTypeMapping TypeName="LeanOnMeModel.AdminQuestion">
+              <MappingFragment StoreEntitySet="AdminQuestions">
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="LeanOnMeModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserQuestions">
+            <EntityTypeMapping TypeName="LeanOnMeModel.UserQuestion">
+              <MappingFragment StoreEntitySet="UserQuestions">
+                <ScalarProperty Name="LeanID" ColumnName="LeanID" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRegistrations">
+            <EntityTypeMapping TypeName="LeanOnMeModel.UserRegistration">
+              <MappingFragment StoreEntitySet="UserRegistration">
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="OTP" ColumnName="OTP" />
+                <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="LeanOnMeModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItems">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MenuItem">
+              <MappingFragment StoreEntitySet="MenuItem">
+                <ScalarProperty Name="MenuItemPosition" ColumnName="MenuItemPosition" />
+                <ScalarProperty Name="MenuItemLink" ColumnName="MenuItemLink" />
+                <ScalarProperty Name="MenuItemText" ColumnName="MenuItemText" />
+                <ScalarProperty Name="MenuItemIcon" ColumnName="MenuItemIcon" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="MenuItemID" ColumnName="MenuItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuPages">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MenuPage">
+              <MappingFragment StoreEntitySet="MenuPage">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="PageLevel" ColumnName="PageLevel" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorLists">
+            <EntityTypeMapping TypeName="LeanOnMeModel.DoctorList">
+              <MappingFragment StoreEntitySet="DoctorList">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
+                <ScalarProperty Name="BusinessPhoneNumber" ColumnName="BusinessPhoneNumber" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Organisation" ColumnName="Organisation" />
+                <ScalarProperty Name="Speciality" ColumnName="Speciality" />
+                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="DoctorID" ColumnName="DoctorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyHelpers">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MyHelper">
+              <MappingFragment StoreEntitySet="MyHelpers">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="BusinessNumber" ColumnName="BusinessNumber" />
+                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Organistaion" ColumnName="Organistaion" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MyHelperID" ColumnName="MyHelperID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyMedicines">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MyMedicine">
+              <MappingFragment StoreEntitySet="MyMedicines">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="DoctorContact" ColumnName="DoctorContact" />
+                <ScalarProperty Name="PrescribedDoctor" ColumnName="PrescribedDoctor" />
+                <ScalarProperty Name="TimesTaken" ColumnName="TimesTaken" />
+                <ScalarProperty Name="Weekdays" ColumnName="Weekdays" />
+                <ScalarProperty Name="PillsPerDose" ColumnName="PillsPerDose" />
+                <ScalarProperty Name="DosagePerPill" ColumnName="DosagePerPill" />
+                <ScalarProperty Name="MedicineName" ColumnName="MedicineName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="MedicineID" ColumnName="MedicineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedicalConditions">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MedicalCondition">
+              <MappingFragment StoreEntitySet="MedicalConditions">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="Restrictions" ColumnName="Restrictions" />
+                <ScalarProperty Name="DoctorDiagnosed" ColumnName="DoctorDiagnosed" />
+                <ScalarProperty Name="YearDiagnosed" ColumnName="YearDiagnosed" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="MedicalName" ColumnName="MedicalName" />
+                <ScalarProperty Name="CommonName" ColumnName="CommonName" />
+                <ScalarProperty Name="MedicalID" ColumnName="MedicalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyCallTrees">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MyCallTree">
+              <MappingFragment StoreEntitySet="MyCallTree">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="BusinessNumber" ColumnName="BusinessNumber" />
+                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Organistaion" ColumnName="Organistaion" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CallTreeID" ColumnName="CallTreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyNeighbors">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MyNeighbor">
+              <MappingFragment StoreEntitySet="MyNeighbors">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="BusinessNumber" ColumnName="BusinessNumber" />
+                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NeighborID" ColumnName="NeighborID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MySafePlaces">
+            <EntityTypeMapping TypeName="LeanOnMeModel.MySafePlace">
+              <MappingFragment StoreEntitySet="MySafePlaces">
+                <ScalarProperty Name="Images" ColumnName="Images" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="HelperID" ColumnName="HelperID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="BusinessNumber" ColumnName="BusinessNumber" />
+                <ScalarProperty Name="HomeNumber" ColumnName="HomeNumber" />
+                <ScalarProperty Name="Coordinates" ColumnName="Coordinates" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="PlaceName" ColumnName="PlaceName" />
+                <ScalarProperty Name="PlaceID" ColumnName="PlaceID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

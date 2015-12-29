@@ -1,0 +1,89 @@
+﻿@model DataAccess.Models.UserRegistration
+@using System.Data;
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="login-page" class="row">
+    <div class="col s12 m12 l6 card-panel">
+        @using (Html.BeginForm("Edit", "Lean", FormMethod.Post,
+                                        new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+            <div class="row">
+                <div class="input-field col s12 center">
+                    <h4>Modify User Details</h4>
+                    @Html.HiddenFor(m => m.ProfileImage)
+                    @Html.HiddenFor(m=>m.UserID)
+                    @Html.HiddenFor(m=>m.OTP)
+                    @Html.HiddenFor(m => m.RegDate)
+                </div>
+            </div>
+
+            DataTable dt = new DataTable();
+            dt = (DataTable)Session["User"];
+            if (dt != null)
+            {
+                if (dt.Rows.Count > 0)
+                {
+                    string role = Convert.ToString(dt.Rows[0]["Role"]);
+                    if (role == "Admin")
+                    {
+                        <div class="row margin" style="margin-left: 45px;">
+                            <div class="input-field col s12">
+                                <i class="mdi-action-lock-outline prefix" style="margin-left:-45px;margin-top:5px;"></i>
+                                @Html.DropDownList("HelperID", (SelectList)ViewBag.User)
+                                <b style="color:red"> @Html.ValidationMessageFor(model => model.HelperID)</b>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        Session["userid"] = Convert.ToString(dt.Rows[0]["UserID"]);
+                    }
+                }
+            }
+
+            <div class="row margin">
+                <div class="input-field col s12">
+                    <i class="mdi-social-person-outline prefix"></i>
+                    @Html.TextBoxFor(m => m.UserName)
+                    <label for="UserName" class="center-align">Username</label>
+                    <b style="color:red">@Html.ValidationMessageFor(model => model.UserName)</b>
+                </div>
+            </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-communication-email prefix"></i>
+                        @Html.TextBoxFor(m => m.Description)
+                        <label for="EmailID" class="center-align">Description</label>
+                        <b style="color:red"> @Html.ValidationMessageFor(model => model.Description)</b>
+                    </div>
+                </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-face-unlock prefix"></i>
+                            <input type="file" name="file" id="file">
+                        </div>
+                    </div>
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <img src="~/Uploads/LeanProfiles/@Model.ProfileImage" alt="" height="120px" width="120px" />
+                        </div>
+                    </div>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <div class="input-field col s6">
+                                    <button name="Login" type="submit" class="btn waves-effect waves-light col s6">Save <i class="mdi-content-send right"></i></button>
+                                </div>
+                                <div class="input-field col s6">
+                                    <a href="@Url.Action("Index")" class="btn waves-effect waves-light left">
+                                        Back<i class="mdi-content-send right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+        }
+    </div>
+</div>

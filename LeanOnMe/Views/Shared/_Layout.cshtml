@@ -1,0 +1,162 @@
+﻿@using System.Data;
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lean on me</title>
+    <link rel="icon" href="../../Images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon-precomposed" href="../../Images/favicon/apple-touch-icon-152x152.png">
+    <link href="../../Content/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Content/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Content/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Scripts/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Scripts/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Content/CssTable.css" type="text/css" rel="stylesheet" />
+    <script>
+        var sessionTimeoutWarning = @Session.Timeout -1;
+        var sTimeout = parseInt(sessionTimeoutWarning) * 60 * 1000;
+        setTimeout('SessionEnd()', sTimeout);
+        function SessionEnd() {
+            window.location = "/Login/Index";
+        }
+    </script>
+</head>
+<body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <header id="header" class="page-topbar">
+        <div class="navbar-fixed">
+            <nav class="cyan">
+                <div class="nav-wrapper">
+                    <h1 class="logo-wrapper">
+                        <a href="~/Home/Index" class="brand-logo darken-1">
+                            <img src="../../Images/materialize-logo.png" />
+                        </a> <span class="logo-text">Lean On Me</span>
+                    </h1>
+                    <ul class="right hide-on-med-and-down">
+                        <li>
+                            <a href="~/Login/Index">
+                                <strong> Logout</strong>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    </header>
+    <div id="main">
+        <div class="wrapper">
+            <aside id="left-sidebar-nav">
+                <ul id="slide-out" class="side-nav fixed leftside-navigation">
+                    <li class="user-details cyan darken-2">
+                        @{
+                            string adm = "";
+                            string name = "";
+                            long user = 0;
+                            <div class="row">
+                                <div class="col col s4 m4 l4">
+                                    @{
+                                        DataTable dt = new DataTable();
+                                        dt = (DataTable)Session["User"];
+                                        if (dt != null)
+                                        {
+                                            if (dt.Rows.Count > 0)
+                                            {
+                                                string imgs = Convert.ToString(Session["Pic"]);
+                                                name = Convert.ToString(dt.Rows[0]["UserName"]);
+                                                string role = Convert.ToString(dt.Rows[0]["Role"]);
+                                                user = Convert.ToInt32(dt.Rows[0]["UserID"]);
+                                                if (role == "Admin")
+                                                {
+                                                    adm = "Administrator";
+                                                }
+                                                else
+                                                {
+                                                    adm = "Helper";
+                                                }
+
+                                    <img src="~/Uploads/Profiles/@imgs" alt="" class="circle responsive-img valign profile-image">
+                                            }
+                                        }
+                                    }
+
+                                </div>
+                                <div class="col col s8 m8 l8">
+                                    <ul id="profile-dropdown" class="dropdown-content">
+                                        <li><a href="~/RegisterUser/Profiles/@user"><i class="mdi-action-face-unlock"></i>Profile</a> </li>
+                                        <li class="divider"></li>
+                                        @*<li><a href="~/Login/Lock"><i class="mdi-action-lock-outline"></i>Lock</a> </li>*@
+                                        <li><a href="~/Login/Index"><i class="mdi-hardware-keyboard-tab"></i>Logout</a> </li>
+                                    </ul>
+                                    <a class="btn-flat dropdown-button waves-effect waves-light white-text profile-btn" href="#" data-activates="profile-dropdown">
+                                        @name
+                                        <i class="mdi-navigation-arrow-drop-down right"></i>
+                                    </a>
+                                    <p class="user-roal">@adm</p>
+                                </div>
+                            </div>
+                        }
+                    </li>
+                    <li class="bold"><a href="~/Home/Index" class="waves-effect waves-cyan"><i class="mdi-action-dashboard"></i>Dashboard</a> </li>
+                    @{
+                        string roles = Convert.ToString(Session["RoleName"]);
+                        if (roles.Length > 0 || roles != null)
+                        {
+                            if (roles == "Admin")
+                            {
+                                <li class="no-padding">
+                                    <ul class="collapsible collapsible-accordion">
+                                        <li class="bold">
+                                            <a class="collapsible-header  waves-effect waves-cyan"><i class="mdi-content-add-circle-outline"></i>Menu Navigation</a>
+                                            <div class="collapsible-body">
+                                                <ul>
+                                                    <li><a href="~/MenuPage/Index">Menu Pages</a> </li>
+                                                    <li><a href="~/MenuItem/Index">Menu Items</a> </li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                @*<li class="bold"><a href="~/AdminQuestion/Index" class="waves-effect waves-cyan"><i class="mdi-communication-email"></i>Admin Questions </a></li>*@
+                                <li class="bold"><a href="~/RegisterUser/Index" class="waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i>Register</a> </li>
+                            }
+                            <li class="bold"><a href="~/Lean/Index" class="waves-effect waves-cyan"><i class="mdi-social-people"></i>Users</a> </li>
+                            <li class="bold"><a href="~/DoctorList/Index" class="waves-effect waves-cyan"><i class="mdi-content-add-box"></i>My Doctors</a> </li>
+                            <li class="bold"><a href="~/MyHelper/Index" class="waves-effect waves-cyan"><i class="mdi-communication-live-help"></i>My Helpers</a> </li>
+                            <li class="bold"><a href="~/MyMedicine/Index" class="waves-effect waves-cyan"><i class="mdi-editor-format-color-reset"></i>My Medicines</a> </li>
+                            <li class="bold"><a href="~/MyNeighbors/Index" class="waves-effect waves-cyan"><i class="mdi-social-people"></i>My Neighbors</a> </li>
+                            <li class="bold"><a href="~/MySafePlaces/Index" class="waves-effect waves-cyan"><i class="mdi-maps-my-location"></i>My SafePlaces</a> </li>
+                            <li class="bold"><a href="~/MyCallTree/Index" class="waves-effect waves-cyan"><i class="mdi-communication-live-help"></i>My CallTree</a> </li>
+                        }
+                    }
+
+                    @*<li class="bold"><a href="app-calendar.html" class="waves-effect waves-cyan"><i class="mdi-editor-insert-invitation"></i>Calender</a> </li>*@
+
+                </ul>
+                <a href="#" data-activates="slide-out" class="sidebar-collapse btn-floating btn-medium waves-effect waves-light hide-on-large-only darken-2"><i class="mdi-navigation-menu"></i></a>
+            </aside>
+            <section id="content">
+                @RenderBody()
+            </section>
+
+        </div>
+    </div>
+    @*<div class="container body-content">
+            <hr />
+            <footer class="page-footer">
+                <div class="footer-copyright">
+                    <div class="container"><span>Copyright © 2015 <a class="grey-text text-lighten-4" href="#" target="_blank">Lean On Me</a> All rights reserved.</span> <span class="right">Design and Developed by <a class="grey-text text-lighten-4" href="http:\\www.infrawebsoft.com">Infrawebsoft Technologies Pvt Ltd</a></span> </div>
+                </div>
+            </footer>
+        </div>*@
+    <script type="text/javascript" src="../../Scripts/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/materialize.js"></script>
+    <script type="text/javascript" src="../../Scripts/prism.js"></script>
+    <script type="text/javascript" src="../../Scripts/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/plugins/chartist-js/chartist.min.js"></script>
+    <script type="text/javascript" src="../../Scripts/plugins.js"></script>
+</body>
+</html>

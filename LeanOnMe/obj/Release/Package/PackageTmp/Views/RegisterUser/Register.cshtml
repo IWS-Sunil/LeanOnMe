@@ -1,0 +1,177 @@
+﻿@model DataAccess.Models.Registration
+@{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    string user = Convert.ToString(Session["UserName"]);
+    if (user.Length > 0)
+    {       
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = null;
+    }
+    <script>
+        $(document).ready(function () {
+            var us = '@Request.RequestContext.HttpContext.Session["UserName"]';            
+            if (us.length > 0) {               
+                $('#html4').removeClass('html2');
+                $('#html4').addClass('html1');
+                $('#gologin').css('display', 'none');
+                $('#goback').css('display', 'block');
+            }
+            else {                
+                $('#html4').removeClass('html1');
+                $('#html4').addClass('html2');
+                $('#gologin').css('display', 'block');
+                $('#goback').css('display', 'none');
+            }
+        });
+    </script>
+    <style>
+        #submit {
+            background-color: #ff4081;
+            border: #ff4081;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+}
+<!DOCTYPE html>
+<html lang="en" id="html4">
+<head>
+    <title>Lean On Me</title>
+    <link rel="icon" href="../../Images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon-precomposed" href="../../Images/favicon/apple-touch-icon-152x152.png">
+    <meta name="msapplication-TileColor" content="#00bcd4">
+    <meta name="msapplication-TileImage" content="../../Images/favicon/mstile-144x144.png">
+    <link href="../../Content/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Content/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Content/page-center.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Content/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="../../Scripts/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+</head>
+
+<body class="cyan">
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div id="login-pages" class="row">
+        <div class="col s14 z-depth-4 card-panel">
+            @using (Html.BeginForm("Register", "RegisterUser",FormMethod.Post,
+                            new { enctype = "multipart/form-data",id="myForm" }))
+            {
+                @Html.ValidationSummary(true)
+                <div class="row">
+                    <div class="input-field col s12 center">
+                        <h4>Register</h4>
+                        <p class="center">Join <strong style="color: blue">Lean On Me</strong> Community!</p>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-social-person-outline prefix"></i>
+                        @*<input id="username" type="text" name="@Model.UserName">*@
+                        @Html.TextBoxFor(m => m.UserName)
+                        <label for="UserName" class="center-align">Username</label>
+                        <b style="color:red"> @Html.ValidationMessageFor(model => model.UserName)</b>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-communication-email prefix"></i>
+                        @Html.TextBoxFor(m => m.EmailID)
+                        <label for="EmailID" class="center-align">Email</label>
+                        <b style="color:red">  @Html.ValidationMessageFor(model => model.EmailID)</b>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-lock-outline prefix"></i>
+                        @Html.PasswordFor(m => m.Password)
+                        <label for="Password">Password</label>
+                        <b style="color:red"> @Html.ValidationMessageFor(model => model.Password)</b>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-lock-outline prefix"></i>
+                        @Html.PasswordFor(m => m.ConfirmPassword)
+                        <label for="ConfirmPassword">Confirm Password</label>
+                        <b style="color:red">  @Html.ValidationMessageFor(model => model.ConfirmPassword)</b>
+                    </div>
+                </div>
+
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-settings-cell prefix"></i>
+                        @Html.TextBoxFor(m => m.ContactNo)
+                        <label for="ContactNo">Contact Number</label>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-communication-location-on prefix"></i>
+                        @Html.TextBoxFor(m => m.Address)
+                        <label for="Address">Address</label>
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-face-unlock prefix"></i>
+                        <input type="file" name="file" id="ProfilePic">
+                        <!-- <label for="ProfilePic">Avatar</label>-->
+                    </div>
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <b style="color:red">@ViewBag.Error</b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <div class="input-field col s6">
+                            @*<input type="submit" id="submit" value="Register Now" class="btn cyan waves-effect waves-light left" />*@
+                            <a onclick="document.getElementById('myForm').submit();" class="btn cyan waves-effect waves-light left">
+                                Register Now<i class="mdi-content-send right"></i>
+                            </a>
+                        </div>
+                        <div class="input-field col s6" id="goback">
+                            <a href="@Url.Action("Index")" class="btn cyan waves-effect waves-light left">
+                                Go Back<i class="mdi-content-send right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="input-field col s12" id="gologin">
+                        <p class="margin center medium-small sign-up">Already have an account? <a href="~/Login/Index">Login</a></p>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+
+    <script type="text/javascript" src="../../Scripts/jquery-1.11.2.min.js"></script>
+    <!--materialize js-->
+    <script type="text/javascript" src="../../Scripts/materialize.js"></script>
+    <!--prism-->
+    <script type="text/javascript" src="../../Scripts/prism.js"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="../../Scripts/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <!-- chartist -->
+    <script type="text/javascript" src="../../Scripts/plugins/chartist-js/chartist.min.js"></script>
+
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="../../Scripts/plugins.js"></script>
+
+</body>
+
+</html>

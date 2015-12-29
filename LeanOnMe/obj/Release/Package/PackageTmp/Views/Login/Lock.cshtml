@@ -1,0 +1,74 @@
+﻿@model DataAccess.Models.Registration
+@using System.Data;
+@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lean On Me</title>
+    <link rel="icon" href="~/Images/favicon/favicon-32x32.png" sizes="32x32">
+    <link rel="apple-touch-icon-precomposed" href="~/Images/favicon/apple-touch-icon-152x152.png">
+    <link href="~/Content/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="~/Content/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="~/Content/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link media="screen,projection" rel="stylesheet" type="text/css" href="~/Content/page-center.css">
+    <link href="~/Scripts/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+    <link href="~/Scripts/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+</head>
+<body class="cyan">
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <div id="login-page" class="row">
+        <div class="col s12 z-depth-4 card-panel">
+            <form class="login-form" action="~/Login/Index" method="post">
+                <div class="row">
+                    @{
+                        DataTable dt = new DataTable();
+                        dt = (DataTable)Session["User"];
+                        if(dt!=null)
+                        {
+                            if (dt.Rows.Count > 0)
+                            {
+                                string imgs = Convert.ToString(dt.Rows[0]["Image"]);
+                                string name = Convert.ToString(dt.Rows[0]["UserName"]);
+                            <div class="input-field col s12 center">
+                                <img src="~/Uploads/Profiles/@imgs" alt="" class="circle responsive-img valign profile-image-login">
+                                <h4 class="header">@name</h4>
+                            </div>
+                                }
+                            }
+                        }
+
+                </div>
+                <div class="row margin">
+                    <div class="input-field col s12">
+                        <i class="mdi-action-lock-outline prefix"></i>
+                        @Html.PasswordFor(m=>m.Password)
+                        <label for="Password">Password</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {                            
+                            <button name="Login" type="submit" class="btn waves-effect waves-light col s12">Login <i class="mdi-content-send right"></i></button>
+                        }
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/Scripts/jquery-1.11.2.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/materialize.js"></script>
+    <script type="text/javascript" src="~/Scripts/prism.js"></script>
+    <script type="text/javascript" src="~/Scripts/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/plugins/chartist-js/chartist.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/plugins.js"></script>
+</body>
+
+</html>

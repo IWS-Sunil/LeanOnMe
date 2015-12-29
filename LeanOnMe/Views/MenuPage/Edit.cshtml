@@ -1,0 +1,78 @@
+﻿@model DataAccess.Models.MenuPage
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <div class="section">
+        <div class="section" id="basic-form">
+            <div class="row">
+                <div class="col s12 m12 l6">
+                    <div class="card-panel">
+                        <h4 class="header2">Modify Menu Page</h4>
+                        <div class="row">
+                            @using (Html.BeginForm("Edit", "MenuPage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+                                @Html.HiddenFor(m=>m.PageID)
+                                <table class="table-bordered">
+                                    <tr>
+                                        <td>
+                                            Page Name
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.PageName)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Page Level
+                                        </td>
+                                        <td>
+                                            @Html.TextBoxFor(m => m.PageLevel)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Icon
+                                        </td>
+                                        <td>
+                                            <input type="file" name="file" id="file" accept="image/*" />
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="row margin">
+                                                <div class="input-field col s12">
+                                                    <img src="~/Uploads/MenuPage/@Model.Images" alt="" height="120px" width="120px" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+
+                                    <div class="input-field col s12">
+                                        <div class=" col s6 ">
+                                            <a href="@Url.Action("Index")" class="btn cyan waves-effect waves-light left">
+                                                Go Back<i class="mdi-content-send right"></i>
+                                            </a>
+                                        </div>
+                                        <div class=" col s6">
+                                            <button name="action" type="submit" class="btn cyan waves-effect waves-light right">Submit <i class="mdi-content-send right"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <a class="btn-floating btn-move-up waves-effect waves-light darken-2 right"><i class="mdi-content-add activator add-row-btn"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
